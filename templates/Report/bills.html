@@ -1,0 +1,69 @@
+{% extends 'Base/navbar.html' %}
+{% block content %}
+{% load static %}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+    h6 {
+      text-align: center;
+    }
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+
+<div class="container">
+  <!---- search bills -->
+  {% if bills %}
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h6 class="panel-title">  Bill List</h6>
+      </div>
+      <table class="table table-hover" id="dev-table">
+          <thead>
+              <tr>
+                  
+                  <th>Vendor_Id</th>
+                  <th>VendorName</th>
+                  <th>VendorPhoneNo</th>
+                  <th>Product</th>
+                  <th>ProductQuantity</th>
+                  <th>Price</th>
+                  <th>RecivedDate</th> 
+                  
+                 
+              </tr>
+          </thead>
+          {% for bill in bills %}
+            <tr>
+                
+                <td>{{bill.Vendor_Id}}</td>
+                <td>{{bill.VendorName}}</td>
+                <td>{{bill.VendorPhoneNo}}</td>
+                <td>{{bill.Product}}</td>
+                <td>{{bill.ProductQuantity}}</td>
+                <td>{{bill.Price}}</td>
+                <td>{{bill.RecivedDate}}</td>
+                
+                
+            </tr>
+          {% endfor %}
+        </table>
+    </div>
+  {%else%}
+    <br><br><br>
+    <h4 style="text-align: center;color: red;">No Bills Found !!!</h4>
+  {% endif %}
+
+
+</div>
+
+{% endblock content %}

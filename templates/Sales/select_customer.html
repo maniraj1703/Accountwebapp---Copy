@@ -1,0 +1,81 @@
+{% extends 'Base/navbar.html' %}
+{% block content %}
+{% load static %}
+
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  
+    <style media="screen">
+      a:link {
+        text-decoration: none;
+      }
+      h6 {
+        text-align: center;
+      }
+      .row {
+        margin: 100px;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .div-container {
+        margin-left: 20px;
+      }
+      .search-width {
+        width: 300px !important;
+      }
+      .table-margin {
+        margin-top: 20px;
+        margin-right: 20px;
+      }
+      .select-style {
+        width: 1000px;
+        gap: 1rem;
+      }
+      .header-style {
+        color:#ea2088;
+        font-style: bold;
+        font-size: 3rem;
+      }
+      .btnSubmit {
+        border: none;
+        border-radius: 1.5rem;
+        width: 100px;
+        cursor: pointer;
+        background: #0062cc;
+        color: #fff;
+        height: 30px;
+        margin-left: 20px;
+    }
+    .pl-20 {
+        padding-left: 20px;
+    }
+    </style>
+  </head>
+
+
+  <div class="header-style pl-20">New Sales</div> 
+  
+  <br>
+  
+  <form method="post">
+
+      {% csrf_token %}
+      
+      {% for field in form.visible_fields %}
+          <div class="form-group select-style pl-20">
+            <div class="note">
+                <p>Select Customer</p>
+              </div>
+              {{ field }}
+          </div>
+      {% endfor %}
+
+      <br>
+      <button type="submit" class="btnSubmit">Next</button>
+      
+  </form>
+
+{% endblock content %}

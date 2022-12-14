@@ -1,0 +1,92 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    <!-- Main CSS, then Sidebar CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">   
+    <title>Account Keeper - Login</title>
+    <style>
+        label {
+            color: black;
+        }
+        legend {
+            color: black;
+        }
+        input {
+            width: 50%;
+        }
+        .align-style {
+            display: grid;
+            justify-items: center;
+        }
+        li {
+            color: black;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: aliceblue; height: 100%;">
+
+<div class="align-middle" style="color: #ea2088; font-style: bold; font-size: 3rem;">Account Keeper</div>
+<div class="align-middle" style="color: #fff">To Maintain the Accounts</div>
+<br><br><br>
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+        {% if user.is_authenticated %}
+            
+            <br><br>
+            <h2 class="align-middle">You are already logged in, {{ request.user.username }}!</h2>
+            <div class="border-top pt-3 align-middle"> <br>
+                <a class="btn ghost-blue" href="/">Go back home</a> <br><br>
+                <a class="btn ghost-red" href="/login">Log Out</a>
+            </div>
+        
+        {% else %}
+
+            <div class="content-section">
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group align-style">
+                        <div class="align-middle"><legend class="border-bottom mb-4">Please Login to use Account-Keeper</legend></div>
+                        {{ form }}
+                    </fieldset>
+                    <div class="form-group">
+                        <div class="align-middle"> 
+                            <button class="ghost-pink" type="submit">Login</button>  
+                            
+                            <button class="ghost-pink"><a href="/signup">Create a account</a></button>
+                            {# <button class="ml-2 ghost-red">Exit</button> #}
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        {% endif %}
+
+    </div>
+</div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'bootstrap/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+
+</body>
+
+</html>

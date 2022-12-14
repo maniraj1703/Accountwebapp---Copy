@@ -1,0 +1,84 @@
+{% extends 'Base/navbar.html' %}
+{% block content %}
+{% load static %}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+    h6 {
+      text-align: center;
+    }
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+
+<div class="container">
+  <!---- search bills -->
+     <form  action="/searchorder" method="get" style="margin-left:70%;" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Product" name="query" id="query" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> 
+
+    
+
+    <button><a href="/add-order">Add New Order</a></button>
+  {% if orders %}
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h6 class="panel-title">  Order List</h6>
+      </div>
+      <table class="table table-hover" id="dev-table">
+          <thead>
+              <tr>
+                  
+                  <th>Vendor_Id</th>
+                  <th>VendorName</th>
+                  <th>VendorPhoneNo</th>
+                  <th>Product</th>
+                  <th>ProductQuantity</th>
+                  <th>Price</th>
+                  <th>Total_Price</th>
+                  <th>OrderedDate</th> 
+                  <th>Update</th>
+                  <th>Delete</th>
+                 
+              </tr>
+          </thead>
+          {% for order in orders %}
+            <tr>
+                
+                <td>{{forloop.counter}}</td>
+                <td>{{order.VendorName}}</td>
+                <td>{{order.Phone_No}}</td>
+                <td>{{order.Product}}</td>
+                <td>{{order.Product_Quantity}}</td>
+                <td>{{order.Price}}</td>
+                <td>{{order.Total_Price}}</td>
+                <td>{{order.Ordereddate}}</td>
+                <td><a class="btn btn-primary btn-xs" href="{% url 'update-order' order.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                <td><a class="btn btn-danger btn-xs" href="{% url 'delete-order' order.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+            
+
+                
+                
+            </tr>
+          {% endfor %}
+        </table>
+    </div>
+  {%else%}
+    <br><br><br>
+    <h4 style="text-align: center;color: red;">No Orders Found !!!</h4>
+  {% endif %}
+
+
+</div>
+
+{% endblock content %}

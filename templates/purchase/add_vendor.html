@@ -1,0 +1,103 @@
+{% extends 'Base/navbar.html' %}
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+
+<head>
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+
+    .menu {
+      top: 50px;
+    }
+  </style>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="{% static 'CSS/style.css' %}" type="text/css"/> 
+</head>
+<br><br><br>
+<!------ Vendor  Page  ---------->
+
+    <div class="container">
+      <div class="col-md">
+          <div class="note">
+                <p>Add Vendor</p>
+            </div>
+            <div class="form-content">
+                <div class="row">
+                    <div class="col-md-6">
+                      <form action="" method="POST" autocomplete="off" id="form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <label for="Name">Name</label>
+                          <input type="text" class="form-control" name="Name" id="Name" placeholder="Name">
+                          <i class="ion-ios-checkmark"></i>
+                          <i class="ion-android-alert"></i>
+                          <p>Error Message</p>
+                          </div>
+                          <div class="form-group">
+                            <label for="Phone_No">Phone_No</label>
+                            <input type="text" class="form-control" name="Phone_No" id="Phone_No" placeholder="Enter Phone Number">
+                            <i class="ion-ios-checkmark"></i>
+                            <i class="ion-android-alert"></i>
+                            <p>Error Message</p>
+                          </div> 
+                          <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input type="text" class="form-control" name="Email" id="Email" placeholder="Enter Email">
+                            <i class="ion-ios-checkmark"></i>
+                            <i class="ion-android-alert"></i>
+                            <p>Error Message</p>
+                          </div>
+                          <div class="form-group">
+                            <label for="Billing_Address">Billing_Address</label>
+                            <input type="text" class="form-control" name="Billing_Address" id="Billing_Address" placeholder="Enter Address">
+                            <i class="ion-ios-checkmark"></i>
+                            <i class="ion-android-alert"></i>
+                            <p>Error Message</p>
+                          </div>
+                          </div>
+                </div>
+                <button type="submit" class="btnSubmit">Add</button>
+            </div>
+        </div>
+    </div>
+  </div>
+</form>
+<script src="{% static '/JS/vendor.js' %}"></script>
+{% endblock content %}

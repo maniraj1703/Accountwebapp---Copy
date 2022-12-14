@@ -1,0 +1,71 @@
+{% extends 'Base/navbar.html' %}
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+<head>
+  <style media="screen">
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+  </style>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="{% static 'CSS/style.css' %}" type="text/css"/> 
+</head>
+<br>
+<div class="container">
+  <div class="col-md">
+      <div class="note">
+    <p>Debit Amount</p>
+      </div>
+  <div class="form-content">
+    <div class="row">
+      <div class="col-md-6">
+<form action="" method="POST" autocomplete="off" id="form">
+  {% csrf_token %}            
+    {% if vendor %}
+    <div class="form-group">
+        <label>Select Account</label>
+        <select name="Acc_Num" id="acc" class="form-control" required>
+          <td><option value="">None</option></td>
+        {% for vend in vendor %}
+          <td><option value="{{vend.Account_Number}}">{{vend.Account_Number}}</option></td>
+        {% endfor %}  
+      </select></div>
+        <div class="form-group">
+            <label hidden>Balance</label>
+            <input type="text" class="form-control" value="{{banking.Balance}}" name="Current_Balance" hidden>
+          </div>
+          <div class="form-group">
+            <br><label>Withdraw Amount</label>
+            <input type="text" class="form-control" name="Debit" id="Bal" placeholder="Enter Amount">
+            <i class="ion-ios-checkmark"></i>
+            <i class="ion-android-alert"></i>
+            <p>Error Message</p>
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" class="form-control" name="Date" required>
+          </div><br>
+            <input type="submit" value="Withdraw Money" id="add_btn" class="btn btn-primary btn-block">
+      {% else %}<br><br>
+        <h4 style="text-align: center;color: red;">Vendor Account is not Found !!!</h4>
+      {% endif %}
+  </form></div></div></div>
+  </div>
+</div>
+<script src="{% static '/JS/cre_deb.js' %}"></script>
+{% endblock content %}

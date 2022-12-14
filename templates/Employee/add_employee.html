@@ -1,0 +1,99 @@
+{% extends 'Base/navbar.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<head>
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+
+    .menu {
+      top: 50px;
+    }
+  </style>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<br><br><br>
+
+<!------ Employee Registration Page  ---------->
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container register-form">
+        <div class="form">
+            <div class="note">
+                <p>Add Employee</p>
+            </div>
+            <div class="form-content">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        {% render_field empForm.Eid class="form-control" placeholder="Employee ID" %}
+                        <span>{{empForm.errors.Eid}}</span>
+                    </div>
+                    <div class="form-group">
+                        {% render_field empForm.Name class="form-control" placeholder="Name" %}
+                        <span>{{empForm.errors.Name}}</span>
+                      </div>
+                    <div class="form-group">
+                        {% render_field empForm.Email class="form-control" placeholder="Email" %}
+                    </div>
+                    <div class="form-group">
+                        {% render_field empForm.PhoneNo class="form-control" placeholder="PhoneNo" %}
+                        <span>{{empForm.errors.PhoneNo}}</span>
+                    </div>
+                    <div class="form-group">
+                        {% render_field empForm.Role required="required" class="form-control" placeholder="Role" %}
+                        <span>{{empForm.errors.Role}}</span>
+                      </div>
+                    <div class="form-group">
+                        {% render_field empForm.Salary required="required" class="form-control" placeholder="Salary" %}
+                        <span>{{empForm.errors.Salary}}</span>
+                    </div>
+                    <div class="form-group">
+                        {% render_field empForm.PF required="required" class="form-control" placeholder="PF" %}
+                        <span>{{empForm.errors.PF}}</span>
+                    </div>
+                </div>
+                </div>
+                <button type="submit" class="btnSubmit">Add</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}

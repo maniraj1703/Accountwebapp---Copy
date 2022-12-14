@@ -1,0 +1,84 @@
+{% extends 'Base/navbar.html' %}
+{% block content %}
+{% load static %}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+    h6 {
+      text-align: center;
+    }
+    .row {
+      margin: 100px;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .div-container {
+      margin-left: 20px;
+    }
+    .search-width {
+      width: 300px !important;
+    }
+    .table-margin {
+      margin-top: 20px;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+<div class="text-center">
+  <a href="/add-Customer">
+    <button class="btn btn-primary">Add Customer</button>
+  </a>
+</div>
+<div class="div-container">
+  
+  
+  
+  {% if customer %}
+    <form action="/searchcustomer" method="get" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2 search-width" type="search" placeholder="Search by phone number" name="query" id="query" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search">Search</button>
+    </form> 
+    <div class="panel panel-primary table-margin">
+      <div class="panel-heading">
+        <h6 class="panel-title"> Total Customer List</h6>
+      </div>
+      <table class="table table-hover" id="dev-table">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone No</th>
+                  <th>Customer Type</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+              </tr>
+          </thead>
+          {% for customers in customer %}
+            <tr>
+                <td>{{customers.Name}}</td>
+                <td>{{customers.Email}}</td>
+                <td>{{customers.PhoneNo}}</td>
+                <td>{{customers.CustomerType}}</td>
+                <td><a class="btn btn-primary btn-xs" href="{% url 'update-customer' customers.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                <td><a class="btn btn-danger btn-xs" href="{% url 'delete-customer' customers.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+            </tr>
+          {% endfor %}
+        </table>
+    </div>
+  {% else %}
+    <br><br><br>
+    <h4 style="text-align: center; color: red; margin-right: 20px;">No Customer Found !!!</h4>
+  {% endif %}
+
+
+</div>
+
+{% endblock content %}

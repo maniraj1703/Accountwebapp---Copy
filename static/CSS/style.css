@@ -1,0 +1,33 @@
+.form-group i{
+    position: absolute;
+    right: 20px;
+    margin-top: -30px;
+    visibility: hidden;
+}
+.form-group p{
+  color: red;
+  bottom: 0;
+  left: 18px;
+  top:75px;
+  font-size: 1rem;
+  font-style: italic;
+  visibility: hidden;
+}
+.success input{
+    border-color: #2ecc71;
+}
+.success i.ion-ios-checkmark{
+    visibility: visible;
+    color: #2ecc71;
+}
+.error input{
+    border-color: red;
+}
+.error i.ion-android-alert {
+    visibility: visible;
+    color: red;
+}
+.error p{
+    visibility: visible;
+    
+}

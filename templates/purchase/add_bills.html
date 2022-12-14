@@ -1,0 +1,138 @@
+{% extends 'Base/navbar.html' %}
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+
+<head>
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    .note {
+      text-align: center;
+      height: 80px;
+      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+      color: #fff;
+      font-weight: bold;
+      line-height: 80px;
+    }
+
+    .form-content {
+      padding: 5%;
+      border: 1px solid #ced4da;
+      margin-bottom: 2%;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 1%;
+      width: 20%;
+      cursor: pointer;
+      background: #0062cc;
+      color: #fff;
+    }
+
+    .menu {
+      top: 50px;
+    }
+  </style>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="{% static 'CSS/style.css' %}" type="text/css"/> 
+
+</head>
+<br><br><br>
+<body onload="multiply();">
+<div class="container">
+  <div class="col-md">
+      <div class="note">
+            <p>Add Bills</p>
+        </div>
+        <div class="form-content">
+            <div class="row">
+                <div class="col-md-6">
+                  <form action="" method="POST" autocomplete="off" id="form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="Vendor_Id">Vendor_Id</label>
+                      <input type="text" class="form-control" name="Vendor_Id" id="Vendor_Id" placeholder="Vendor Id">
+                      <i class="ion-ios-checkmark"></i>
+                      <i class="ion-android-alert"></i>
+                      <p>Error Message</p>
+                    </div>
+                      <div class="form-group">
+                        <label for="VendorName">VendorName</label>
+                        <input type="text" class="form-control" name="VendorName" id="VendorName" placeholder="VendorName">
+                        <i class="ion-ios-checkmark"></i>
+                        <i class="ion-android-alert"></i>
+                        <p>Error Message</p>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="VendorPhoneNo">VendorPhoneNo</label>
+                          <input type="text" class="form-control" name="VendorPhoneNo" id="VendorPhoneNo" placeholder="Vendor Phone Number">
+                          <i class="ion-ios-checkmark"></i>
+                          <i class="ion-android-alert"></i>
+                          <p>Error Message</p>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="Product">Product</label>
+                            <input type="text" class="form-control" name="Product" id="Product" placeholder="Product">
+                            <i class="ion-ios-checkmark"></i>
+                            <i class="ion-android-alert"></i>
+                            <p>Error Message</p>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="ProductQuantity">ProductQuantity</label>
+                              <input type="number" class="form-control" name="ProductQuantity" id="ProductQuantity" value="0" onchange="multiply();" placeholder="Product Quantity">
+                              <i class="ion-ios-checkmark"></i>
+                              <i class="ion-android-alert"></i>
+                              <p>Error Message</p>
+                              </div>
+
+                              <div class="form-group">
+                                <label for="Price">Price</label>
+                                <input type="number" class="form-control" name="Price" id="Price" value="0" onchange="multiply();" placeholder="Price">
+                                <i class="ion-ios-checkmark"></i>
+                                <i class="ion-android-alert"></i>
+                                <p>Error Message</p>
+                                </div>
+
+                               
+                                  <label for="Total_Price">Total_Price</label>
+                                  <input type="text" class="form-control" name="Total_Price" id="Total_Price">
+                                 
+                                
+                                  <label for="RecivedDate">RecivedDate</label>
+                                  <input type="date" class="form-control" name="RecivedDate" id="RecivedDate " placeholder="RecivedDate">
+                                 
+                                  <button type="submit" class="btnSubmit">Add</button></form>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<script>
+   function multiply(){
+    var ProductQuantity = document.getElementById("ProductQuantity").value;
+    var Price = document.getElementById("Price").value;
+    var Total_Price = parseFloat(ProductQuantity)*parseFloat(Price);
+    document.getElementById("Total_Price").value = Total_Price
+  }
+</script>
+<script src="{% static '/JS/bill.js' %}"></script>
+  
+</body>
+{% endblock content %}

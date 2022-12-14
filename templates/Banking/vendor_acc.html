@@ -1,0 +1,54 @@
+{% extends 'Base/navbar.html' %}
+{% block content %}
+{% load static %}
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<div class="container-fluid">
+  <div class="text-center">
+    <a href="/add-vendor-bank" class="btn btn-primary">Add Vendor Bank Account</a>
+  </div>
+    <form  action="/search_vendor_bank" method ="get" class="form-inline my-2 my-lg-0" autocomplete="off">
+      <input class="form-control mr-sm-2 search-width" type="search" placeholder="Vendor Phone Number" name="query" id="query" aria-label="Search">
+      <button class="btn btn-success my-2 my-sm-0" type="submit" name="search">Search</button>
+    </form><br>
+    {% if vendor %}
+    <div class="panel panel-primary table-margin">
+      <div class="panel-heading">
+      <h6 class="panel-title"> Vendor Account List</h6>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Bank Name</th>
+            <th>IFSC Number</th>
+            <th>Account Number</th>
+            <th>Holder Name</th>
+            <th>Mobile Number</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+          {% for vend in vendor %}
+          <tbody>
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{vend.Bank_Name}}</td>
+              <td>{{vend.IFSC_Number}}</td>
+              <td>{{vend.Account_Number}}</td>
+              <td>{{vend.Holder_Name}}</td>
+              <td>{{vend.Mobile_Number}}</td>
+              <td><a class="btn btn-success btn-xs" href="{% url 'update-vendor-bank' vend.id  %}"><span class="glyphicon glyphicon-edit"></span></a></td>
+              <td><a class="btn btn-danger btn-xs" href="{% url 'delete-vendor-bank' vend.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+          </tr>
+          </tbody>
+          {% endfor %}
+      </table>
+    {% else %}<br><br><br>
+      <h4 style="text-align: center;color: red;">Vendor Account is not Found !!!</h4>
+    {% endif %}
+    </div>
+{% endblock content %}
